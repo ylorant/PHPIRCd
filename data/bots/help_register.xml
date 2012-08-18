@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<help>
+	<commands>
+		<command name="REGISTER">
+			<description>Registers you on the server.</description>
+			<usage>REGISTER [e-mail] [password] [password_validation]</usage>
+			<commands>
+				<command name="DEL">
+					<description>Unregisters you on the server.</description>
+					<usage>REGISTER DEL</usage>
+				</command>
+			</commands>
+		</command>
+	</commands>
+</help>

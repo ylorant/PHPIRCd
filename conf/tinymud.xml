@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mud>
+	<rooms>
+		<room id="r1" start="true">
+			Une salle vide. Au centre de la pièce se trouve une table avec un livre dessus. Il y a deux portes, au nord et au sud.
+			<door orientation="north" goto="r2" locked="false" />
+			<door orientation="south" goto="r3" locked="true" key="k1" />
+			<object name="Table" description="Une vieille table " />
+			<object name="Grimoire" id="magicbook" description="Un grimoire contenant des formules magiques" take="true" />
+			<event name="setInitMoney" priority="0" />
+		</room>
+		<room id="r2">
+			Une salle vide. A l'est se trouve une grande porte entre-ouverte sur l'extérieur.
+			<door orientation="east" goto="r4" locked="false" />
+			<door orientation="south" goto="r1" locked="false" />
+			<event name="oldGuyCall" />
+		</room>
+		<room id="r4">
+			Une clairière entourée d'un bois obscur.
+			<door orientation="west" goto="r2" locked="false" />
+			<door orientation="south" goto="r5" locked="false" />
+		</room>
+	</rooms>
+	<events>
+		<event id="oldGuyCall">
+			<call>oldGuyCall</call>
+		</event>
+		<event id="setInitMoney">
+			<call>setInitMoney</call>
+			<call>showMoney</call>
+		</event>
+	</events>
+	<aliases>
+		<alias from="This is not a direction." to="Ceci n'est pas une direction." />
+		<alias from="You can't go there." to="Vous ne pouvez pas aller par là." />
+	</aliases>
+</mud>

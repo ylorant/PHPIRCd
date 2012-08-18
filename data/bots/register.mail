@@ -1,0 +1,9 @@
+Bienvenue sur le réseau {network}.
+
+Pour valider votre compte, veuillez envoyer cette commande sur le serveur :
+/msg {botname} VALIDATE {hash}
+
+Ensuite, vous pourrez vous connecter avec cette commande :
+/msg {botname} LOGIN {user} {password}
+
+Merci d'utiliser {network} !
