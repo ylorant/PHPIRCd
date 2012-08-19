@@ -172,14 +172,14 @@ class Main
 		//Ouverture de la socket et écriture des erreurs dans le log
 		if(($this->_socket = socket_create(AF_INET, SOCK_STREAM, 0)) === false)
     	{
-    		$this->logClass->writeLog('La création de la socket a échoué : '.socket_strerror($socket),'error');
+    		$this->logClass->writeLog('La création de la socket a échoué : '.socket_strerror(socket_last_error()),'error');
 			exit("Erreur ! Voir le log.\n");
 		}
 	
 		//Assignation de la socket et toujours écriture des erreurs dans le log
 		if(($assignation = socket_bind($this->_socket, $this->_configMain['bind_addr'], $this->_configMain['port'])) == FALSE)
     	{
-    		$this->logClass->writeLog('Le bind de la socket à l\'adresse "'.$this->_configMain['bind_addr'].'" a échoué : '.socket_strerror($assignation),'error');
+    		$this->logClass->writeLog('Le bind de la socket à l\'adresse "'.$this->_configMain['bind_addr'].'" a échoué : '.socket_strerror(socket_last_error()),'error');
 			exit("Erreur ! Voir le log.\n");
 		}
 		
@@ -199,7 +199,7 @@ class Main
 			//Etape 1 : on vérifie si il n'y a pas de connexion entrante ($listen contiendra l'erreur éventuelle)
 			if(($listen = socket_listen($this->_socket)) === false)
 			{
-				$this->logClass->writeLog('L\'écoute de la socket a échoué : '.socket_strerror($ecoute),'error');
+				$this->logClass->writeLog('L\'écoute de la socket a échoué : '.socket_strerror(socket_last_error()),'error');
 				exit();
 			}
 			//Etape 2 : on accepte une connexion éventuelle
@@ -226,7 +226,6 @@ class Main
 				$this->clients[$id]['lastcmd'] = time();
 				$this->clients[$id]['pinged'] = 0;
 				$this->clients[$id]['firstping'] = FALSE;
-				$this->clients[$id]['channels'] = array();
 				
 				$this->sendData($id,"NOTICE AUTH :***Looking up your hostname",'direct');
 				$this->sendData($id,"NOTICE AUTH :***Checking ident",'direct');
